@@ -869,7 +869,7 @@ def american_76(option_type, fs, x, t, r, v):
 
 # ### Public Interface for implied Volatility Functions
 
-def euro_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01, ):
+def euro_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01, max_steps= 200 ):
     """Implied volatility calculator for European options.
 
     Args:
@@ -885,7 +885,7 @@ def euro_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01, ):
         value (float): Implied volatility.
     """
     b = r - q
-    return _gbs_implied_vol(option_type, fs, x, t, r, b, cp, precision= precision)
+    return _gbs_implied_vol(option_type, fs, x, t, r, b, cp, precision= precision, max_steps= max_steps)
 
 
 def euro_implied_vol_76(option_type, fs, x, t, r, cp):
@@ -906,7 +906,7 @@ def euro_implied_vol_76(option_type, fs, x, t, r, cp):
     return _gbs_implied_vol(option_type, fs, x, t, r, b, cp)
 
 
-def amer_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01):
+def amer_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01, max_steps= 200):
     """Implied volatility calculator for American options.
 
     Args:
@@ -922,7 +922,7 @@ def amer_implied_vol(option_type, fs, x, t, r, q, cp, precision= 0.01):
         value (float): Implied volatility.
     """
     b = r - q
-    return _american_implied_vol(option_type, fs, x, t, r, b, cp, precision= precision)
+    return _american_implied_vol(option_type, fs, x, t, r, b, cp, precision= precision, max_steps= max_steps)
 
 
 def amer_implied_vol_76(option_type, fs, x, t, r, cp):
